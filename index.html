@@ -256,7 +256,7 @@ function explodeConfetti(){
       vy: Math.sin(angle) * speed,
       size: Math.random()*6+4,
       color: `hsl(${Math.random()*360},100%,60%)`,
-      life: 90
+      life: 150
     });
   }
   requestAnimationFrame(updateConfetti);
