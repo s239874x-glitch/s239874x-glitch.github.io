@@ -45,7 +45,7 @@ gap:5px;
 }
 
 .tap{
-font-size:1.3em;
+font-size:2em;
 color:white;
 letter-spacing:2px;
 margin:0;
@@ -122,6 +122,7 @@ h1{
 font-size:2.5em;
 text-align:center;
 margin-bottom:20px;
+color:#c0392b;
 }
 
 p{
@@ -148,7 +149,7 @@ vertical-align:middle;
 <body>
 
 <div id="gift">
-  <span class="tap">TAP ME</span>
+  <span class="tap"><strong>TAP ME</strong>strong></span>
   <span class="gift-emoji">🎁</span>
 </div>
 
@@ -159,7 +160,7 @@ vertical-align:middle;
 
     <p>
     あなたは農工大の<br>
-    美術部を見つけました！<br>
+    <strong><span style="color:#c0392b;">美術部</span></strong>を見つけました！<br>
     <a href="https://x.com/nokonokoart" target="_blank">ツイッター（現X）</a><br>
     <a href="https://www.instagram.com/artclub_tuat/" target="_blank">インスタグラム</a>も<br>
     チェックしてください！
@@ -202,6 +203,7 @@ document.getElementById("gift").addEventListener("click", function(){
   const audio = document.getElementById("se");
   if(audio){
     audio.currentTime = 0;
+    audio.volume = 0.3;
     audio.play().catch(()=>{});
   }
 
