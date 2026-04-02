@@ -1,1 +1,59 @@
-<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>農工大美術部</title> <style> body{ margin:0; height:100vh; display:flex; justify-content:center; align-items:center; text-align:center; font-family:sans-serif; background:#0a6b37; } .box{ background:white; padding:40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.15); } h1{ font-size:2.5em; } p{ font-size:1.3em; } </style> </head> <body> <div class="box"> <h1>おめでとう！</h1> <p> あなたは農工大の美術部を見つけました！<br> <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://x.com/nokonokoart&ved=2ahUKEwjUruWD_82TAxXukq8BHSCMHz4QFnoECCgQAQ&sqi=2&usg=AOvVaw3ATO7BWNqlMq58couYkZrg" target="_blank">ツイッター</a>、 <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.instagram.com/artclub_tuat/&ved=2ahUKEwiomb3h_82TAxXekq8BHUlsHZsQFnoECCMQAQ&usg=AOvVaw1QXNSXQBKeSho2-JBjaz9G" target="_blank">インスタグラム</a>もあります！<br> </p> <p style="font-size: 0.7em; color: gray;"> ※ネタバラシはこっそりおねがいします 🤫 </p> </div> </body> </html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>農工大美術部</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+font-family:sans-serif;
+background:#0a6b37;
+}
+.box{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+
+h1{
+font-size:2.5em;
+}
+
+p{
+font-size:1.3em;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>おめでとう！</h1>
+
+<p>
+あなたは農工大の美術部を見つけました！<br>
+<a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://x.com/nokonokoart&ved=2ahUKEwjUruWD_82TAxXukq8BHSCMHz4QFnoECCgQAQ&sqi=2&usg=AOvVaw3ATO7BWNqlMq58couYkZrg" target="_blank">ツイッター</a>、  
+<a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.instagram.com/artclub_tuat/&ved=2ahUKEwiomb3h_82TAxXekq8BHUlsHZsQFnoECCMQAQ&usg=AOvVaw1QXNSXQBKeSho2-JBjaz9G" target="_blank">インスタグラム</a>もあります！<br>
+</p>
+
+<p style="font-size:  0.7em; color: gray;">
+  ※ネタバラシはこっそりおねがいします 🤫
+</p>
+  
+</div>
+  
+</body>
+  
+</html>
