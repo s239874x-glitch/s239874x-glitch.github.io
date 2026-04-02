@@ -43,7 +43,17 @@ text-align:center;
 will-change: transform;
 gap:5px;
 }
-
+/*紙吹雪ブロック*/
+#confetti{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:5;
+}
+  
 .tap{
 font-size:2em;
 color:white;
@@ -148,6 +158,9 @@ vertical-align:middle;
 
 <body>
 
+/* 紙吹雪 */
+<canvas id="confetti"></canvas> 
+  
 <div id="gift">
   <span class="tap"><strong>TAP ME</strong></span>
   <span class="gift-emoji">🎁</span>
@@ -194,7 +207,13 @@ document.getElementById("gift").addEventListener("click", function(){
     if(window.twemoji){
       twemoji.parse(box);
     }
+    explodeConfetti();   // 紙吹雪爆発
+    updateConfetti();    // 紙吹雪アップデート
   }, 100);
+
+  /* 紙吹雪の色 */
+  const colors = ["#e63946","#f1faee","#a8dadc","#457b9d","#ffbe0b"];
+  color: colors[Math.floor(Math.random()*colors.length)]
 
   setTimeout(()=>{
     wrapper.classList.add("shake");
@@ -216,6 +235,64 @@ document.getElementById("gift").addEventListener("click", function(){
 /* 初期Twemoji */
 if(window.twemoji){
   twemoji.parse(document.body);
+}
+
+/* 爆発 */
+  const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function explodeConfetti(){
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+
+  for(let i=0;i<150;i++){
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 6 + 3;
+
+    particles.push({
+      x: centerX,
+      y: centerY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: Math.random()*6+4,
+      color: `hsl(${Math.random()*360},100%,60%)`,
+      life: 100
+    });
+  }
+}
+
+function updateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach((p, i)=>{
+    p.x += p.vx;
+    p.y += p.vy;
+
+    // 重力
+    p.vy += 0.1;
+
+    // 空気抵抗
+    p.vx *= 0.99;
+    p.vy *= 0.99;
+
+    p.life--;
+
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x, p.y, p.size, p.size);
+
+    if(p.life <= 0){
+      particles.splice(i,1);
+    }
+  });
+
+  if(particles.length > 0){
+    requestAnimationFrame(updateConfetti);
+  }
 }
 </script>
 
