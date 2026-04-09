@@ -295,13 +295,14 @@ shareBtn.onclick = async () => {
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
 };
 /* ========= Canvas ========= */
-const confettiCanvas=document.getElementById("confetti");
-const confettiCtx=confettiCanvas.getContext("2d");
+const confettiCanvas = document.getElementById("confetti");
+const confettiCtx = confettiCanvas.getContext("2d");
 
-const drawCanvas=document.getElementById("drawCanvas");
-const drawCtx=drawCanvas.getContext("2d");
-drawCtx.lineJoin="round";
-drawCtx.lineCap="round";
+const drawCanvas = document.getElementById("drawCanvas");
+const drawCtx = drawCanvas.getContext("2d");
+
+drawCtx.lineJoin = "round";
+drawCtx.lineCap = "round";
 
 function resize() {
   confettiCanvas.width = window.innerWidth;
@@ -443,7 +444,7 @@ drawCanvas.ontouchmove=(e)=>{
   drawCtx.lineTo(t.clientX-rect.left,t.clientY-rect.top);
 
   drawCtx.strokeStyle=`hsl(${hue},100%,60%)`;
-  hue+=2;
+  hue = (hue + 2) % 360;
 
   drawCtx.lineWidth=3;
   drawCtx.lineCap="round";
