@@ -247,26 +247,41 @@ const shareBtn = document.getElementById("shareBtn");
 shareBtn.onclick = async ()=>{
   
   //シェアボタン消す
-  shareBtn.style.display = "none";
-  
-  // ⭐キャンバスを一時的に消す
-  confettiCanvas.style.display = "none";
-  
-  const canvas = await html2canvas(document.body, {
-     useCORS:true,
-     backgroundColor:"#0f6f3c",
-     ignoreElements:(el)=> el.id==="confetti"
-  });
-  const img = canvas.toDataURL("image/png");
+  shareBtn.onclick = async ()=>{
 
-  const link = document.createElement("a");
-  link.href = img;
-  link.download = "art.png";
+  shareBtn.style.display="none";
+  confettiCanvas.style.display="none";
+
+  // 背景を撮影
+  const screenshot = await html2canvas(document.body,{
+    useCORS:true,
+    backgroundColor:"#0a6b37",
+    ignoreElements:(el)=> el.id==="confetti" || el.id==="drawCanvas"
+  });
+
+  // 合成キャンバス
+  const finalCanvas = document.createElement("canvas");
+  finalCanvas.width = screenshot.width;
+  finalCanvas.height = screenshot.height;
+
+  const ctx = finalCanvas.getContext("2d");
+
+  // 背景
+  ctx.drawImage(screenshot,0,0);
+
+  // 描画を合成
+  ctx.drawImage(drawCanvas,0,0);
+
+  const img = finalCanvas.toDataURL("image/png");
+
+  const link=document.createElement("a");
+  link.href=img;
+  link.download="art.png";
   link.click();
 
-  // ⭐元に戻す
-  confettiCanvas.style.display = "block";
-  shareBtn.style.display = "inline-block";
+  confettiCanvas.style.display="block";
+  shareBtn.style.display="inline-block";
+};
 
   // Twitter 共有はここだけ
   const text = encodeURIComponent(
