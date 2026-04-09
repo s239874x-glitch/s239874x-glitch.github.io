@@ -248,6 +248,30 @@ shareBtn.onclick = async ()=>{
   // UIまとめて非表示
   uiLayer.style.display = "none";
 
+  // ボックスのスタイルを固定して薄くならないようにする
+  box.style.transition = "none";
+  box.style.opacity = "1";
+  box.style.transform = "scale(1)";
+
+  // アニメーション終了を待つ（アニメーションがなければ即時）
+  const waitAnimation = new Promise(resolve => {
+    if (box.getAnimations && box.getAnimations().length > 0) {
+      const anims = box.getAnimations();
+      let finished = 0;
+      anims.forEach(anim=>{
+        anim.onfinish = ()=>{
+          finished++;
+          if(finished===anims.length) resolve();
+        };
+      });
+    } else {
+      // アニメーションなしなら数フレーム待つ
+      requestAnimationFrame(()=>requestAnimationFrame(resolve));
+    }
+  });
+
+  await waitAnimation;
+
   // 描画完了待ち（重要：2→5フレームに増やす）
   for(let i=0;i<5;i++){
     await new Promise(r => requestAnimationFrame(r));
