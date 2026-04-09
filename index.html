@@ -247,7 +247,6 @@ document.getElementById("gift").addEventListener("click", function(){
   opened = true;
 
   this.style.display = "none";
-  canvas.style.pointerEvents = "auto";
 
   const box = document.querySelector(".box");
   const wrapper = document.querySelector(".box-wrapper");
@@ -300,8 +299,8 @@ let drawMode = false;
 /* ===== 紙吹雪 ===== */
 
 function explodeConfetti(){
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
+  const centerX = confettiCanvas.width / 2;
+　const centerY = confettiCanvas.height / 2;
 
   for(let i=0;i<150;i++){
     const angle = Math.random() * Math.PI * 2;
@@ -386,11 +385,11 @@ drawCanvas.addEventListener("mousedown", (e)=>{
   drawCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
 });
 
-canvas.addEventListener("mousemove", (e)=>{
+drawCanvas.addEventListener("mousemove", (e)=>{
   if(!drawing) return;
 
   const rect = canvas.getBoundingClientRect();
-  ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+  drawCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
 
   ctx.strokeStyle = `hsl(${hue}, 100%, 60%)`;
   hue += 2;
@@ -415,8 +414,6 @@ drawCanvas.addEventListener("mousedown", (e)=>{
   drawCtx.beginPath();
   drawCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
 });
-  
-}, { passive:false });
 
 canvas.addEventListener("touchmove", (e)=>{
   if(!drawing) return;
