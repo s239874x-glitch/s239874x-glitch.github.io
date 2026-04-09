@@ -195,7 +195,7 @@ cursor:pointer;
 <strong><span style="color:#c0392b;">美術部</span></strong>を見つけました！<br>
 <a href="https://x.com/nokoart_active" target="_blank">ツイッター（現X）</a><br>
 <a href="https://www.instagram.com/artclub_tuat/" target="_blank">インスタグラム</a>も<br>
-チェックしてください！
+フォローしてください！
 </p>
 
 <p class="small">
@@ -248,7 +248,9 @@ shareBtn.onclick = async ()=>{
 
   // ボタン一瞬隠す（写り込み防止）
   shareBtn.style.display = "none";
-
+  drawBtn.style.display = "none";
+  clearBtn.style.display = "none";
+  
   const canvas = await html2canvas(document.body);
 
   const img = canvas.toDataURL("image/png");
@@ -261,10 +263,11 @@ shareBtn.onclick = async ()=>{
 
   // ボタン戻す
   shareBtn.style.display = "inline-block";
-
+  clearBtn.style.display = "inline-block";
+  drawBtn.style.display = "inline-block";
   // Twitterへ
   const text = encodeURIComponent(
-    "農工大美術部見つけた！🎨\n（画像も一緒に投稿してね！）\n#農工大美術部\n"
+    "農工大美術部見つけた！🎨\n（保存した画像も一緒に投稿してね！）\n#農工大美術部\n"
   );
 
   const url = encodeURIComponent("https://x.com/nokoart_active");
