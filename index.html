@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<audio id="se" src="sound.mp3" preload="auto"></audio>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +18,7 @@ font-family:sans-serif;
 background:#0a6b37;
 overflow:hidden;
 }
+
 
 /* 背景 */
 body::before{
@@ -176,7 +176,7 @@ cursor:pointer;
 </head>
 
 <body>
-
+<audio id="se" src="sound.mp3" preload="auto"></audio>
 <canvas id="confetti"></canvas>
 <canvas id="drawCanvas"></canvas>
 
@@ -437,40 +437,6 @@ drawCanvas.ontouchend=(e)=>{
 };
 
 drawCanvas.ontouchend=()=>drawing=false;
-
-/* ========= 共有 ========= */
-const shareBtn = document.getElementById("shareBtn");
-
-shareBtn.onclick = async ()=>{
-
-  // ボタン一瞬隠す（写り込み防止）
-  shareBtn.style.display = "none";
-
-  const canvas = await html2canvas(document.body);
-
-  const img = canvas.toDataURL("image/png");
-
-  // 保存
-  const link = document.createElement("a");
-  link.href = img;
-  link.download = "art.png";
-  link.click();
-
-  // ボタン戻す
-  shareBtn.style.display = "inline-block";
-
-  // Twitterへ
-  const text = encodeURIComponent(
-    "農工大美術部見つけた！🎨\n（画像も一緒に投稿してね！）\n#農工大美術部"
-  );
-
-  const url = encodeURIComponent("https://x.com/nokoart_active");
-
-  window.open(
-    `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-    "_blank"
-  );
-};
 
 </script>
 </body>
