@@ -31,164 +31,57 @@ pointer-events:none;
 /* 🎁 */
 #gift{
 cursor:pointer;
-animation: float 2s infinite;
 z-index:30;
-
 display:flex;
 flex-direction:column;
 align-items:center;
-justify-content:center;
-text-align:center;
-
-will-change: transform;
-gap:5px;
 }
-/*紙吹雪ブロック*/
-#confetti{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:15;
 
-  pointer-events:none; /* ←ずっと無効でOK */
+/* Canvas */
+#confetti{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+z-index:15;
+pointer-events:none;
 }
 
 #drawCanvas{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:20;
-
-  pointer-events:none; /* ←通常は無効 */
-  touch-action:none;
-}
-
-/* テキスト選択無効化 */
-body, canvas {
-  -webkit-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;
-}
-
-button{
-  padding:8px 12px;
-  margin:5px;
-  border:none;
-  border-radius:8px;
-  background:#c0392b;
-  color:white;
-  font-size:0.9em;
-  cursor:pointer;
-}
-  
-.tap{
-font-size:2em;
-color:white;
-letter-spacing:2px;
-margin:0;
-}
-
-.gift-emoji{
- width: 150px;   /* 好きな幅に調整 */
-  height: auto;   /* 縦横比を維持 */
-}
-
-#gift:active{
-transform: scale(0.9);
-}
-
-@keyframes float {
-0% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
-100% { transform: translateY(0); }
-}
-
-/* 中央 */
-.box-wrapper{
-position:absolute;
-top:50%;
-left:50%;
-transform: translate(-50%, -50%);
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+z-index:20;
+pointer-events:none;
+touch-action:none;
 }
 
 /* ボックス */
+.box-wrapper{
+position:absolute;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+}
+
 .box{
 background:white;
-width:90vw;
-max-width:700px;
-padding:40px;
-box-sizing:border-box;
-
-border:12px solid #8b5a2b;
-box-shadow:
-0 0 0 4px #d2b48c inset,
-0 10px 30px rgba(0,0,0,0.3);
-
-transform:scale(0.5);
+padding:30px;
+max-width:600px;
+transform:scale(0);
 opacity:0;
 pointer-events:none;
-
-will-change: transform, opacity;
 }
 
 .box.active{
-animation: pop 0.6s ease-out forwards;
+transform:scale(1);
+opacity:1;
 pointer-events:auto;
 }
 
-@keyframes pop {
-0% { transform: scale(0.5); opacity:0; }
-70% { transform: scale(1.1); opacity:1; }
-100% { transform: scale(1); opacity:1; }
+/* ボタン */
+button{
+margin:5px;
+padding:8px;
 }
-
-.box-wrapper.shake{
-animation: shake 0.4s ease-in-out;
-}
-
-@keyframes shake {
-0% { transform: translate(-50%, -50%) translate(0,0); }
-20% { transform: translate(-50%, -50%) translate(-4px,2px); }
-40% { transform: translate(-50%, -50%) translate(4px,-2px); }
-60% { transform: translate(-50%, -50%) translate(-3px,1px); }
-80% { transform: translate(-50%, -50%) translate(3px,-1px); }
-100% { transform: translate(-50%, -50%) translate(0,0); }
-}
-
-/* テキスト */
-h1{
-font-size:2.5em;
-text-align:center;
-margin-bottom:20px;
-color:#c0392b;
-}
-
-p{
-font-size:1.3em;
-text-align:center;
-line-height:1.7;
-}
-
-.medium{
-font-size:1em;
-}
-
-.small{
-font-size:0.7em;
-color:gray;
-}
-  
-img.emoji{
-width:1em;
-height:1em;
-vertical-align:-0.1em;
-vertical-align:middle;
-}
-  
 </style>
 </head>
 
@@ -196,248 +89,175 @@ vertical-align:middle;
 
 <canvas id="confetti"></canvas>
 <canvas id="drawCanvas"></canvas>
-  
+
 <div id="gift">
-  <span class="tap"><strong>TAP ME</strong></span>
-<img class="gift-emoji" src="gift.png" alt="🎁">
+  <p style="color:white;">TAP ME</p>
+  <img src="gift.png" width="150">
 </div>
 
 <div class="box-wrapper">
-  <div class="box">
+<div class="box">
 
-    <h1>おめでとう！</h1>
+<h1>おめでとう！</h1>
 
-    <p>
-    あなたは農工大の<br>
-    <strong><span style="color:#c0392b;">美術部</span></strong>を見つけました！<br>
-    <span style="color:#c0392b; text-decoration: underline wavy #c0392b 2px;">
-    気になる、質問がある方
-    </span><br>
-    ↓<br>
-    <a href="https://line.me/ti/g2/Ad13QcH-DozH1t8ytUOZIvxddO9GLigwNriJXA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">
-    LINEオープンチャット</a>にて<br>
-    イベントを告知します！
-    </p>
-    
-    <p class ="medium">
-    <a href="https://x.com/nokoart_active" target="_blank">ツイッター（現X）</a><br>
-    <a href="https://www.instagram.com/artclub_tuat/" target="_blank">インスタグラム</a>も<br>
-    チェックしてください！<br>
-    </p>
+<p>
+<a href="https://line.me" target="_blank">LINE</a>
+</p>
 
-    <p class="small">
-    ※ ネタバラシはこっそりおねがいします🤫
-    </p>
+<button id="drawToggle">✏️ OFF</button>
+<button id="clearBtn">🧹</button>
 
-    <p class="medium">
-    <button id="drawToggle">✏️ 描くモード OFF</button>
-    <button id="clearBtn">🧹 消す</button>
-    </p>
-
-  </div>
+</div>
 </div>
 
-<audio id="se" src="sound.mp3" preload="auto"></audio>
-
 <script>
-let opened = false;
 
-document.getElementById("gift").addEventListener("click", function(){
-  if(opened) return;
-  opened = true;
+/* ========= プレゼント ========= */
+let opened=false;
 
-  this.style.display = "none";
+const gift = document.getElementById("gift");
+const box = document.querySelector(".box");
 
-  const box = document.querySelector(".box");
-  const wrapper = document.querySelector(".box-wrapper");
+gift.onclick = ()=>{
+if(opened) return;
+opened=true;
 
-  setTimeout(()=>{
-    box.classList.add("active");
+gift.style.display="none";
+box.classList.add("active");
 
-    if(window.twemoji){
-      twemoji.parse(box);
-    }
+explodeConfetti();
+};
 
-    explodeConfetti();
+/* ========= Canvas ========= */
+const confettiCanvas=document.getElementById("confetti");
+const confettiCtx=confettiCanvas.getContext("2d");
 
-    // 3秒後に描画OK
-    setTimeout(()=>{
-      drawMode = true;
-    }, 3000);
+const drawCanvas=document.getElementById("drawCanvas");
+const drawCtx=drawCanvas.getContext("2d");
 
-  }, 100);
+function resize(){
+confettiCanvas.width=window.innerWidth;
+confettiCanvas.height=window.innerHeight;
+drawCanvas.width=window.innerWidth;
+drawCanvas.height=window.innerHeight;
+}
+resize();
+window.onresize=resize;
 
-  setTimeout(()=>{
-    wrapper.classList.add("shake");
-  }, 600);
-
-  const audio = document.getElementById("se");
-  if(audio){
-    audio.currentTime = 0;
-    audio.volume = 0.6;
-    audio.play().catch(()=>{});
-  }
-});
-
-/* ===== Canvas ===== */
-
-const confettiCanvas = document.getElementById("confetti");
-const confettiCtx = confettiCanvas.getContext("2d");
-
-const drawCanvas = document.getElementById("drawCanvas");
-const drawCtx = drawCanvas.getContext("2d");
-
-confettiCanvas.width = window.innerWidth;
-confettiCanvas.height = window.innerHeight;
-
-drawCanvas.width = window.innerWidth;
-drawCanvas.height = window.innerHeight;
-
-let particles = [];
-let drawMode = false;
-
-/* ===== 紙吹雪 ===== */
+/* ========= 紙吹雪 ========= */
+let particles=[];
 
 function explodeConfetti(){
-  const centerX = confettiCanvas.width / 2;
-　const centerY = confettiCanvas.height / 2;
-
-  for(let i=0;i<150;i++){
-    const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 6 + 3;
-
-    particles.push({
-      x: centerX,
-      y: centerY,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      size: Math.random()*6+4,
-      color: `hsl(${Math.random()*360},100%,60%)`,
-      life: 150
-    });
-  }
-
-  requestAnimationFrame(updateConfetti);
+for(let i=0;i<120;i++){
+particles.push({
+x:confettiCanvas.width/2,
+y:confettiCanvas.height/2,
+vx:(Math.random()-0.5)*10,
+vy:(Math.random()-0.5)*10,
+life:100,
+color:`hsl(${Math.random()*360},100%,60%)`
+});
+}
+updateConfetti();
 }
 
 function updateConfetti(){
-  confettiCtx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+confettiCtx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
 
-  for(let i = particles.length - 1; i >= 0; i--){
-    const p = particles[i];
+particles.forEach(p=>{
+p.x+=p.vx;
+p.y+=p.vy;
+p.vy+=0.2;
+p.life--;
 
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += 0.1;
-    p.vx *= 0.99;
-    p.vy *= 0.99;
-    p.life--;
+confettiCtx.fillStyle=p.color;
+confettiCtx.fillRect(p.x,p.y,5,5);
+});
 
-    confettiCtx.fillStyle = p.color;
-    confettiCtx.fillRect(p.x, p.y, p.size, p.size);
+particles=particles.filter(p=>p.life>0);
 
-    if(p.life <= 0){
-      particles.splice(i,1);
-    }
-  }
-
-  if(particles.length > 0){
-    requestAnimationFrame(updateConfetti);
-  }
+if(particles.length>0){
+requestAnimationFrame(updateConfetti);
+}
 }
 
-let drawEnabled = false;
-let drawing = false;
-let hue = 0;
+/* ========= 描画 ========= */
+let drawEnabled=false;
+let drawing=false;
+let hue=0;
 
-const drawBtn = document.getElementById("drawToggle");
-const clearBtn = document.getElementById("clearBtn");
+const drawBtn=document.getElementById("drawToggle");
+const clearBtn=document.getElementById("clearBtn");
 
-/* ===== ボタン切り替え ===== */
+drawBtn.onclick=()=>{
+drawEnabled=!drawEnabled;
+drawCanvas.style.pointerEvents=drawEnabled?"auto":"none";
+drawBtn.textContent=drawEnabled?"✏️ ON":"✏️ OFF";
+};
 
-drawBtn.addEventListener("click", ()=>{
-  drawEnabled = !drawEnabled;
+clearBtn.onclick=()=>{
+drawCtx.clearRect(0,0,drawCanvas.width,drawCanvas.height);
+};
 
-  if(drawEnabled){
-    drawBtn.textContent = "✏️ 描くモード ON";
-    drawCanvas.style.pointerEvents = "auto";
-  }else{
-    drawBtn.textContent = "✏️ 描くモード OFF";
-    drawCanvas.style.pointerEvents = "none";
-  }
-});
+/* PC */
+drawCanvas.onmousedown=(e)=>{
+if(!drawEnabled)return;
+drawing=true;
 
-/* ===== クリア ===== */
+const rect=drawCanvas.getBoundingClientRect();
+drawCtx.beginPath();
+drawCtx.moveTo(e.clientX-rect.left,e.clientY-rect.top);
+};
 
-clearBtn.addEventListener("click", ()=>{
-  drawCtx.clearRect(0,0,drawCanvas.width,drawCanvas.height);
-});
+drawCanvas.onmousemove=(e)=>{
+if(!drawing)return;
 
-/* ===== PC ===== */
+const rect=drawCanvas.getBoundingClientRect();
+drawCtx.lineTo(e.clientX-rect.left,e.clientY-rect.top);
 
-drawCanvas.addEventListener("mousedown", (e)=>{
-  if(!drawEnabled) return;
+drawCtx.strokeStyle=`hsl(${hue},100%,60%)`;
+hue+=2;
 
-  drawing = true;
+drawCtx.lineWidth=3;
+drawCtx.lineCap="round";
+drawCtx.stroke();
+};
 
-  const rect = drawCanvas.getBoundingClientRect();
-  drawCtx.beginPath();
-  drawCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-});
+drawCanvas.onmouseup=()=>drawing=false;
+drawCanvas.onmouseleave=()=>drawing=false;
 
-drawCanvas.addEventListener("mousemove", (e)=>{
-  if(!drawing) return;
+/* スマホ */
+drawCanvas.ontouchstart=(e)=>{
+if(!drawEnabled)return;
 
-  const rect = canvas.getBoundingClientRect();
-  drawCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+drawing=true;
+const rect=drawCanvas.getBoundingClientRect();
+const t=e.touches[0];
 
-  ctx.strokeStyle = `hsl(${hue}, 100%, 60%)`;
-  hue += 2;
-  if(hue > 360) hue = 0;
+drawCtx.beginPath();
+drawCtx.moveTo(t.clientX-rect.left,t.clientY-rect.top);
+};
 
-  ctx.lineWidth = 2 + Math.sin(hue * 0.1) * 2;
-  ctx.lineCap = "round";
-  ctx.stroke();
-});
+drawCanvas.ontouchmove=(e)=>{
+if(!drawing)return;
 
-canvas.addEventListener("mouseup", ()=> drawing = false);
-canvas.addEventListener("mouseleave", ()=> drawing = false);
+e.preventDefault();
 
-/* ===== スマホ ===== */
+const rect=drawCanvas.getBoundingClientRect();
+const t=e.touches[0];
 
-drawCanvas.addEventListener("mousedown", (e)=>{
-  if(!drawEnabled) return;
+drawCtx.lineTo(t.clientX-rect.left,t.clientY-rect.top);
 
-  drawing = true;
+drawCtx.strokeStyle=`hsl(${hue},100%,60%)`;
+hue+=2;
 
-  const rect = drawCanvas.getBoundingClientRect();
-  drawCtx.beginPath();
-  drawCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-});
+drawCtx.lineWidth=3;
+drawCtx.lineCap="round";
+drawCtx.stroke();
+};
 
-canvas.addEventListener("touchmove", (e)=>{
-  if(!drawing) return;
-
-  e.preventDefault();
-
-  const rect = canvas.getBoundingClientRect();
-  const t = e.touches[0];
-
-  ctx.lineTo(t.clientX - rect.left, t.clientY - rect.top);
-
-  ctx.strokeStyle = `hsl(${hue}, 100%, 60%)`;
-  hue += 2;
-  if(hue > 360) hue = 0;
-
-  ctx.lineWidth = 2 + Math.sin(hue * 0.1) * 2;
-  ctx.lineCap = "round";
-  ctx.stroke();
-
-}, { passive:false });
-
-canvas.addEventListener("touchend", ()=> drawing = false);
+drawCanvas.ontouchend=()=>drawing=false;
 
 </script>
-
 </body>
 </html>
