@@ -277,7 +277,7 @@ shareBtn.onclick = async () => {
   link.click();
 
   confettiCanvas.style.display = "block";
-  shareBtn.style.display = "";
+  shareBtn.style.display = "inline-block";
 
   // Twitter 共有
   const text = encodeURIComponent(
@@ -285,7 +285,6 @@ shareBtn.onclick = async () => {
   );
   const url = encodeURIComponent("https://x.com/nokoart_active");
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
-};
 };
 /* ========= Canvas ========= */
 const confettiCanvas=document.getElementById("confetti");
