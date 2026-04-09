@@ -244,31 +244,24 @@ explodeConfetti();
 const shareBtn = document.getElementById("shareBtn");
 
 shareBtn.onclick = async () => {
-  // シェアボタンだけ非表示
+
+  // 1. ボタンだけ一瞬非表示（写り込み防止）
   shareBtn.style.display = "none";
 
-  // ボックスを固定表示
-  box.style.transition = "none";
-  box.style.opacity = "1";
-  box.style.transform = "scale(1)";
+  // 2. 描画キャンバスを一時的に DOM に追加して html2canvas に含める
+  const tempCanvas = document.createElement("canvas");
+  tempCanvas.width = drawCanvas.width;
+  tempCanvas.height = drawCanvas.height;
+  const tempCtx = tempCanvas.getContext("2d");
+  tempCtx.drawImage(drawCanvas, 0, 0); // drawCanvas の内容をコピー
+  tempCanvas.style.position = "fixed";
+  tempCanvas.style.top = "0";
+  tempCanvas.style.left = "0";
+  tempCanvas.style.zIndex = "100"; // 上に重ねる
+  tempCanvas.style.pointerEvents = "none";
+  document.body.appendChild(tempCanvas);
 
-  // 描画キャンバスをコピー
-  const drawCopy = drawCanvas.cloneNode(true);
-  drawCopy.style.position = "fixed";
-  drawCopy.style.top = "0";
-  drawCopy.style.left = "0";
-  drawCopy.style.zIndex = "999"; // 最前面
-  drawCopy.style.pointerEvents = "none"; // UI 操作の邪魔にならないように
-  drawCopy.getContext("2d").drawImage(drawCanvas, 0, 0); // 元の線をコピー
-
-  document.body.appendChild(drawCopy);
-
-  // 描画完了まで少し待つ
-  for (let i = 0; i < 3; i++) {
-    await new Promise(r => requestAnimationFrame(r));
-  }
-
-  // html2canvas でキャプチャ
+  // 3. html2canvas でキャプチャ
   const canvas = await html2canvas(document.body, {
     useCORS: true,
     allowTaint: true,
@@ -276,26 +269,29 @@ shareBtn.onclick = async () => {
     scale: 2
   });
 
-  // 一時コピーを削除
-  document.body.removeChild(drawCopy);
-
   const img = canvas.toDataURL("image/png");
 
-  // 保存
+  // 4. 保存
   const link = document.createElement("a");
   link.href = img;
-  link.download = "myart.png";
+  link.download = "art.png";
   link.click();
 
-  // シェアボタンを戻す
+  // 5. 元に戻す
   shareBtn.style.display = "inline-block";
+  document.body.removeChild(tempCanvas);
 
-  // Twitterへ
+  // 6. Twitter へ
   const text = encodeURIComponent(
-    "農工大美術部見つけた！🎨\n（保存した画像も一緒に投稿してね！）\n#農工大美術部\n"
+    "農工大美術部見つけた！🎨\n（画像も一緒に投稿してね！）\n#農工大美術部"
   );
-  const url = encodeURIComponent("https://x.com/nokoart_active");
-  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
+
+  const url = encodeURIComponent(" https://x.com/nokoart_active");
+
+  window.open(
+    `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+    "_blank"
+  );
 };
 /* ========= Canvas ========= */
 const confettiCanvas=document.getElementById("confetti");
