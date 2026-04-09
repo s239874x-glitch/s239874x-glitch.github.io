@@ -181,13 +181,13 @@ cursor:pointer;
 
 <div id="gift">
   <span class="tap"><strong>TAP ME</strong></span>
-  <img src="gift.png" width="150">
+  <img src="gift.png" crossorigin="anonymous" width="150">
 </div>
 
 <div class="box-wrapper">
 <div class="box">
 
-<h1>おめでとう！</h1>
+<h1>🎉おめでとう！</h1>
 
 <p>
 あなたは農工大の<br>
@@ -274,6 +274,8 @@ const confettiCtx=confettiCanvas.getContext("2d");
 
 const drawCanvas=document.getElementById("drawCanvas");
 const drawCtx=drawCanvas.getContext("2d");
+drawCtx.lineJoin="round";
+drawCtx.lineCap="round";
 
 function resize(){
 confettiCanvas.width=window.innerWidth;
@@ -369,7 +371,7 @@ drawCanvas.onmousemove=(e)=>{
   drawCtx.lineTo(e.clientX-rect.left,e.clientY-rect.top);
 
   drawCtx.strokeStyle=`hsl(${hue},100%,60%)`;
-  hue+=2;
+  hue=(hue + 2) % 360;
 
   drawCtx.lineWidth=3;
   drawCtx.lineCap="round";
