@@ -251,8 +251,9 @@ shareBtn.onclick = async ()=>{
   confettiCanvas.style.display = "none";
   
   const canvas = await html2canvas(document.body, {
-    useCORS:true,
-    backgroundColor:null
+     useCORS:true,
+     backgroundColor:"#0f6f3c",
+     ignoreElements:(el)=> el.id==="confetti"
   });
   const img = canvas.toDataURL("image/png");
 
