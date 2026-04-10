@@ -391,6 +391,7 @@ let drawEnabled=false;
 let drawing=false;
 let hue=0;
 let moved = false;
+let tVal = 0;
 
 const drawBtn=document.getElementById("drawToggle");
 const clearBtn=document.getElementById("clearBtn");
@@ -436,7 +437,13 @@ drawCanvas.onmousemove=(e)=>{
   drawCtx.strokeStyle=`hsl(${hue},100%,60%)`;
   hue=(hue + 4) % 360;
 
-  drawCtx.lineWidth=3;
+  // 🔥 ここがポイント（太さをsinで変化）
+  const base = 2;   // 最小太さ
+  const amp = 6;    // 振れ幅
+  drawCtx.lineWidth = base + Math.sin(tVal) * amp;
+
+  tVal += 0.2; // ← 波の速さ
+  
   drawCtx.lineCap="round";
   drawCtx.stroke();
 };
@@ -479,7 +486,13 @@ drawCanvas.ontouchmove=(e)=>{
   drawCtx.strokeStyle=`hsl(${hue},100%,60%)`;
   hue = (hue + 4) % 360;
 
-  drawCtx.lineWidth=3;
+  // 🔥 ここがポイント（太さをsinで変化）
+  const base = 2;   // 最小太さ
+  const amp = 6;    // 振れ幅
+  drawCtx.lineWidth = base + Math.sin(tVal) * amp;
+
+  tVal += 0.2; // ← 波の速さ
+  
   drawCtx.lineCap="round";
   drawCtx.stroke();
 };
