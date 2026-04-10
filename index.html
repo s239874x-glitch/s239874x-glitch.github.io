@@ -268,8 +268,6 @@ shareBtn.onclick = async () => {
 
   // 背景を描画
   ctx.drawImage(screenshot, 0, 0);
-  ctx.shadowColor = "black";
-  ctx.shadowBlur = 20;
   
   ctx.drawImage(
   drawCanvas,
@@ -278,16 +276,15 @@ shareBtn.onclick = async () => {
  );
 
 　//額縁
-　// グラデーション作成
-  const grad = ctx.createLinearGradient(0, 0, finalCanvas.width, finalCanvas.height);
-  grad.addColorStop(0, "#d4af37");
-  grad.addColorStop(0.5, "#ffd700");
-  grad.addColorStop(1, "#b8860b");
-
-  // 金枠
+　// 木枠
   ctx.lineWidth = 40;
-  ctx.strokeStyle = grad;
+  ctx.strokeStyle = "#8b5a2b";
   ctx.strokeRect(0, 0, finalCanvas.width, finalCanvas.height);
+
+  // 内側の影（立体感）
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = "rgba(0,0,0,0.3)";
+  ctx.strokeRect(20, 20, finalCanvas.width-40, finalCanvas.height-40);
 
 
   /*落書きタイトル*/
