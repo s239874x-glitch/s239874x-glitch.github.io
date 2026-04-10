@@ -269,14 +269,18 @@ shareBtn.onclick = async () => {
   // 背景を描画
   ctx.drawImage(screenshot, 0, 0);
   ctx.shadowColor = "black";
+  
   //額縁
-　ctx.shadowBlur = 20;
+　// グラデーション作成
+  const grad = ctx.createLinearGradient(0, 0, finalCanvas.width, finalCanvas.height);
+  grad.addColorStop(0, "#d4af37");
+  grad.addColorStop(0.5, "#ffd700");
+  grad.addColorStop(1, "#b8860b");
 
-　ctx.lineWidth = 30;
-  ctx.strokeStyle = "#8b5a2b";
+  // 金枠
+  ctx.lineWidth = 40;
+  ctx.strokeStyle = grad;
   ctx.strokeRect(0, 0, finalCanvas.width, finalCanvas.height);
-
-  ctx.shadowBlur = 0;
 
   ctx.drawImage(
   drawCanvas,
@@ -292,7 +296,7 @@ shareBtn.onclick = async () => {
 
  ctx.shadowColor = "black";
  ctx.shadowBlur = 15;
- ctx.fillText('"MY ART"', finalCanvas.width / 2, fontSize + 10);
+ ctx.fillText("「私の作品」", finalCanvas.width / 2, fontSize + 10);
 
   const img = finalCanvas.toDataURL("image/png");
 
